@@ -1,0 +1,21 @@
+# University Logo Placeholder
+
+## Instructions for University Logo:
+
+1. **File Name:** ewu_logo.png
+2. **Location:** This folder (assets/images/)
+3. **Format:** PNG or JPG
+4. **Size:** Recommended 300x300 pixels or similar aspect ratio
+5. **Quality:** High resolution for professional printing
+
+## Alternative Options:
+
+If you don't have the university logo, you can:
+1. Remove the logo line from cover_page.tex
+2. Use a text-based university name only
+3. Add the logo later when available
+
+## Current Status:
+- Logo placeholder created
+- Cover page will work without logo
+- Professional formatting maintained
