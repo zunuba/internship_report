@@ -141,3 +141,4 @@ This project is designed to work with version control systems:
 
 **Note:** This LaTeX project is designed to create a professional, academic-quality internship report that meets university standards and can be easily maintained and updated.
 # internship_report
+# internship_report
