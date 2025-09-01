@@ -29,9 +29,20 @@
 \usetikzlibrary{shapes,arrows,positioning,fit,backgrounds}
 
 % Document settings
-\geometry{margin=1in}
-\setlength{\parindent}{0.5in}
-\onehalfspacing
+\geometry{
+    a4paper,
+    left=2.5cm,
+    right=2.5cm,
+    top=2.5cm,
+    bottom=2.5cm,
+    headheight=15pt,
+    headsep=10pt,
+    footskip=30pt
+}
+\setlength{\parindent}{0.5cm}
+\setlength{\parskip}{0.5em}
+\linespread{1.15}
+\raggedright
 
 % Custom colors
 \definecolor{chaptercolor}{RGB}{0,51,102}
@@ -47,16 +58,16 @@
 
 % Chapter and section formatting
 \titleformat{\chapter}[display]
-{\normalfont\huge\bfseries\color{chaptercolor}}
-{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+{\normalfont\Large\bfseries\color{chaptercolor}}
+{\chaptertitlename\ \thechapter}{10pt}{\Large}
 
 \titleformat{\section}
-{\normalfont\Large\bfseries\color{sectioncolor}}
-{\thesection}{1em}{}
+{\normalfont\large\bfseries\color{sectioncolor}}
+{\thesection}{0.5em}{}
 
 \titleformat{\subsection}
-{\normalfont\large\bfseries}
-{\thesubsection}{1em}{}
+{\normalfont\normalsize\bfseries}
+{\thesubsection}{0.5em}{}
 
 % Hyperref setup
 \hypersetup{
@@ -70,6 +81,11 @@
     pdfsubject={Internship Report},
     pdfkeywords={internship, accounting, finance, Asia Trade & Technology}
 }
+
+% Page break controls
+\widowpenalty=10000
+\clubpenalty=10000
+\displaywidowpenalty=10000
 
 % Custom commands
 \newcommand{\companyname}{Asia Trade \& Technology}
@@ -96,9 +112,13 @@
 
 % Include chapters
 \include{chapters/chapter1}
+\clearpage
 \include{chapters/chapter2}
+\clearpage
 \include{chapters/chapter3}
+\clearpage
 \include{chapters/chapter4}
+\clearpage
 \include{chapters/chapter5}
 
 % Include appendices
