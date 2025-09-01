@@ -1,0 +1,41 @@
+PLACEHOLDER DIAGRAM INSTRUCTIONS
+=====================================
+
+This file contains instructions for creating placeholder diagrams for Chapter 2.
+
+DIAGRAMS NEEDED:
+1. financial_flowchart.png - Monthly Financial Reporting Process Flow
+2. approval_hierarchy.png - Multi-Level Approval Hierarchy Structure  
+3. document_management.png - Document Management System Architecture
+4. budget_control.png - Budget Control and Monitoring Process
+
+PLACEHOLDER CREATION:
+To create simple placeholder diagrams, you can:
+
+1. Use any image editing software (Paint, GIMP, Photoshop)
+2. Create a simple rectangle with text
+3. Use dimensions: 800x600 pixels (or similar ratio)
+4. Use professional colors: Blue (#1f4e79), Green (#2e7d32), Gray (#666666)
+5. Add text: "PLACEHOLDER: [Diagram Name]"
+6. Save as PNG format
+
+EXAMPLE PLACEHOLDER CONTENT:
+- Title: "Monthly Financial Reporting Process Flow"
+- Subtitle: "PLACEHOLDER DIAGRAM"
+- Note: "Replace with actual company flowchart"
+- Colors: Blue background, white text
+
+REPLACEMENT INSTRUCTIONS:
+1. Keep the same filename
+2. Maintain similar dimensions
+3. Use professional styling
+4. Ensure high resolution for printing
+5. Test in LaTeX document before final use
+
+The TikZ source files are available in this directory for reference:
+- financial_flowchart.tex
+- approval_hierarchy.tex  
+- document_management.tex
+- budget_control.tex
+
+These can be compiled to PDF and converted to PNG if needed.

@@ -67,10 +67,10 @@ hamida_internship_report_latex/
 - Role in Bangladesh development
 
 ### Chapter 2: Flow Chart
-- Financial reporting process flow
-- Document management system
-- Approval hierarchy and workflow
-- Budget control mechanisms
+- Financial reporting process flow (with flowchart diagram)
+- Document management system (with architecture diagram)
+- Approval hierarchy and workflow (with organizational chart)
+- Budget control mechanisms (with process flow diagram)
 
 ### Chapter 3: Findings
 - Key observations and insights
@@ -116,6 +116,7 @@ hamida_internship_report_latex/
 - xcolor, hyperref, listings
 - enumitem, setspace, indentfirst
 - url, cite, amsmath, amssymb
+- tikz (for diagrams and flowcharts)
 
 ### Bibliography:
 - Uses BibTeX for bibliography management
