@@ -1,0 +1,103 @@
+% Challenge Analysis Bar Chart
+% TikZ diagram for Chapter 3
+
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning,fit,backgrounds}
+
+\begin{document}
+
+\begin{tikzpicture}[
+    scale=1.2,
+    every node/.style={font=\small}
+]
+
+% Title
+\node[text width=12cm, text centered, font=\Large\bfseries] (title) at (0,8) {Challenges Encountered During Internship - Frequency and Impact Analysis};
+
+% Define challenge categories and data
+\def\challenges{{
+    "Technical\\Software\\Issues",
+    "Document\\Verification\\Complexity",
+    "Communication\\Barriers",
+    "Time\\Management",
+    "Budget\\Understanding",
+    "Process\\Compliance",
+    "Language\\Barriers",
+    "System\\Integration"
+}}
+
+% Define frequency data (1-5 scale)
+\def\frequency{3,4,2,3,4,3,2,2}
+% Define impact data (1-5 scale)  
+\def\impact{3,4,2,3,4,3,1,2}
+
+% Draw axes
+\draw[thick] (0,0) -- (0,6) -- (10,6) -- (10,0) -- cycle;
+
+% Y-axis labels
+\foreach \i in {0,1,2,3,4,5} {
+    \draw[gray!50] (0,\i) -- (-0.1,\i);
+    \node[font=\tiny] at (-0.3,\i) {\i};
+}
+\node[font=\small\bfseries, rotate=90] at (-1,3) {Frequency/Impact Level};
+
+% X-axis labels
+\foreach \i in {0,1,2,3,4,5,6,7} {
+    \pgfmathsetmacro{\x}{1.25*\i + 0.625}
+    \draw[gray!50] (\x,0) -- (\x,-0.1);
+    \node[font=\tiny, text width=1.2cm, text centered] at (\x,-0.4) {
+        \pgfmathparse{\challenges[\i]}
+        \pgfmathresult
+    };
+}
+
+% Draw frequency bars (blue)
+\foreach \i in {0,1,2,3,4,5,6,7} {
+    \pgfmathsetmacro{\x}{1.25*\i + 0.625}
+    \pgfmathsetmacro{\freq}{\frequency[\i]}
+    \pgfmathsetmacro{\height}{\freq*1.2}
+    \fill[blue!60] (\x-0.3,0) rectangle (\x+0.1,\height);
+    \node[font=\tiny, white] at (\x-0.1,\height+0.1) {\freq};
+}
+
+% Draw impact bars (red)
+\foreach \i in {0,1,2,3,4,5,6,7} {
+    \pgfmathsetmacro{\x}{1.25*\i + 0.625}
+    \pgfmathsetmacro{\imp}{\impact[\i]}
+    \pgfmathsetmacro{\height}{\imp*1.2}
+    \fill[red!60] (\x+0.1,0) rectangle (\x+0.5,\height);
+    \node[font=\tiny, white] at (\x+0.3,\height+0.1) {\imp};
+}
+
+% Legend
+\node[text width=3cm, text centered, font=\small\bfseries] (legend_title) at (11,6) {Legend:};
+\node[text width=3cm, text centered, font=\tiny] (legend_freq) at (11,5.5) {Frequency\\\textcolor{blue!60}{\rule{1cm}{0.1cm}}};
+\node[text width=3cm, text centered, font=\tiny] (legend_impact) at (11,5) {Impact Level\\\textcolor{red!60}{\rule{1cm}{0.1cm}}};
+
+% Scale explanation
+\node[text width=3cm, text centered, font=\small\bfseries] (scale_title) at (11,4) {Scale (1-5):};
+\node[text width=3cm, text centered, font=\tiny] (scale1) at (11,3.5) {1 - Very Low};
+\node[text width=3cm, text centered, font=\tiny] (scale2) at (11,3.2) {2 - Low};
+\node[text width=3cm, text centered, font=\tiny] (scale3) at (11,2.9) {3 - Moderate};
+\node[text width=3cm, text centered, font=\tiny] (scale4) at (11,2.6) {4 - High};
+\node[text width=3cm, text centered, font=\tiny] (scale5) at (11,2.3) {5 - Very High};
+
+% Key insights
+\node[text width=4cm, text centered, font=\small\bfseries] (insights_title) at (11,1.5) {Key Insights:};
+\node[text width=4cm, text centered, font=\tiny] (insight1) at (11,1) {• Document verification\\was most challenging};
+\node[text width=4cm, text centered, font=\tiny] (insight2) at (11,0.7) {• Budget understanding\\required significant effort};
+\node[text width=4cm, text centered, font=\tiny] (insight3) at (11,0.4) {• Communication barriers\\were manageable};
+\node[text width=4cm, text centered, font=\tiny] (insight4) at (11,0.1) {• Technical issues were\\moderate in frequency};
+
+% Solutions implemented
+\node[text width=4cm, text centered, font=\small\bfseries] (solutions_title) at (-2,6) {Solutions Implemented:};
+\node[text width=4cm, text centered, font=\tiny] (solution1) at (-2,5.5) {• Additional training\\sessions};
+\node[text width=4cm, text centered, font=\tiny] (solution2) at (-2,5.2) {• Mentorship program\\with senior staff};
+\node[text width=4cm, text centered, font=\tiny] (solution3) at (-2,4.9) {• Step-by-step\\guidelines};
+\node[text width=4cm, text centered, font=\tiny] (solution4) at (-2,4.6) {• Regular feedback\\sessions};
+\node[text width=4cm, text centered, font=\tiny] (solution5) at (-2,4.3) {• Peer support\\network};
+
+\end{tikzpicture}
+
+\end{document}

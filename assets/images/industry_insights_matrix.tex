@@ -1,0 +1,140 @@
+% Industry Insights Comparison Matrix
+% TikZ diagram for Chapter 3
+
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning,fit,backgrounds}
+
+\begin{document}
+
+\begin{tikzpicture}[
+    scale=1.2,
+    every node/.style={font=\small}
+]
+
+% Title
+\node[text width=12cm, text centered, font=\Large\bfseries] (title) at (0,8) {Industry Insights: Theoretical Knowledge vs. Practical Application};
+
+% Define matrix data
+\def\categories{{
+    "Financial\\Reporting",
+    "Document\\Management",
+    "Budget\\Control",
+    "Process\\Compliance",
+    "Team\\Collaboration",
+    "Problem\\Solving",
+    "Technology\\Usage",
+    "Industry\\Standards"
+}}
+
+% Define theoretical vs practical ratings (1-5 scale)
+\def\theoretical{3,2,2,3,3,3,2,2}
+\def\practical{4,4,3,4,4,4,4,3}
+
+% Draw matrix grid
+\draw[thick] (0,0) -- (0,7) -- (10,7) -- (10,0) -- cycle;
+
+% Draw horizontal lines
+\foreach \i in {0,1,2,3,4,5,6,7} {
+    \draw[gray!30] (0,\i) -- (10,\i);
+}
+
+% Draw vertical lines
+\draw[gray!30] (2,0) -- (2,7);
+\draw[gray!30] (4,0) -- (4,7);
+\draw[gray!30] (6,0) -- (6,7);
+\draw[gray!30] (8,0) -- (8,7);
+
+% Add column headers
+\node[text width=2cm, text centered, font=\small\bfseries] at (1,6.5) {Category};
+\node[text width=2cm, text centered, font=\small\bfseries] at (3,6.5) {Theoretical\\Knowledge};
+\node[text width=2cm, text centered, font=\small\bfseries] at (5,6.5) {Practical\\Application};
+\node[text width=2cm, text centered, font=\small\bfseries] at (7,6.5) {Gap\\Analysis};
+\node[text width=2cm, text centered, font=\small\bfseries] at (9,6.5) {Learning\\Impact};
+
+% Add category labels
+\foreach \i in {0,1,2,3,4,5,6,7} {
+    \pgfmathsetmacro{\y}{5.5-\i*0.7}
+    \node[text width=1.8cm, text centered, font=\tiny] at (1,\y) {
+        \pgfmathparse{\categories[\i]}
+        \pgfmathresult
+    };
+}
+
+% Add theoretical knowledge ratings
+\foreach \i in {0,1,2,3,4,5,6,7} {
+    \pgfmathsetmacro{\y}{5.5-\i*0.7}
+    \pgfmathsetmacro{\rating}{\theoretical[\i]}
+    \pgfmathsetmacro{\color}{20*\rating}
+    \fill[blue!\color] (2.1,\y-0.2) rectangle (3.9,\y+0.2);
+    \node[font=\tiny, white] at (3,\y) {\rating};
+}
+
+% Add practical application ratings
+\foreach \i in {0,1,2,3,4,5,6,7} {
+    \pgfmathsetmacro{\y}{5.5-\i*0.7}
+    \pgfmathsetmacro{\rating}{\practical[\i]}
+    \pgfmathsetmacro{\color}{20*\rating}
+    \fill[green!\color] (4.1,\y-0.2) rectangle (5.9,\y+0.2);
+    \node[font=\tiny, white] at (5,\y) {\rating};
+}
+
+% Add gap analysis
+\foreach \i in {0,1,2,3,4,5,6,7} {
+    \pgfmathsetmacro{\y}{5.5-\i*0.7}
+    \pgfmathsetmacro{\theo}{\theoretical[\i]}
+    \pgfmathsetmacro{\prac}{\practical[\i]}
+    \pgfmathsetmacro{\gap}{\prac-\theo}
+    \pgfmathsetmacro{\color}{20*\gap}
+    \fill[orange!\color] (6.1,\y-0.2) rectangle (7.9,\y+0.2);
+    \node[font=\tiny, white] at (7,\y) {+\gap};
+}
+
+% Add learning impact indicators
+\foreach \i in {0,1,2,3,4,5,6,7} {
+    \pgfmathsetmacro{\y}{5.5-\i*0.7}
+    \pgfmathsetmacro{\theo}{\theoretical[\i]}
+    \pgfmathsetmacro{\prac}{\practical[\i]}
+    \pgfmathsetmacro{\gap}{\prac-\theo}
+    \ifnum\gap>1
+        \node[font=\tiny, green!70] at (9,\y) {High};
+    \else
+        \ifnum\gap>0
+            \node[font=\tiny, orange!70] at (9,\y) {Medium};
+        \else
+            \node[font=\tiny, red!70] at (9,\y) {Low};
+        \fi
+    \fi
+}
+
+% Add legend
+\node[text width=3cm, text centered, font=\small\bfseries] (legend_title) at (11,6) {Legend:};
+\node[text width=3cm, text centered, font=\tiny] (legend1) at (11,5.5) {Theoretical\\\textcolor{blue!60}{\rule{1cm}{0.1cm}}};
+\node[text width=3cm, text centered, font=\tiny] (legend2) at (11,5) {Practical\\\textcolor{green!60}{\rule{1cm}{0.1cm}}};
+\node[text width=3cm, text centered, font=\tiny] (legend3) at (11,4.5) {Gap Analysis\\\textcolor{orange!60}{\rule{1cm}{0.1cm}}};
+
+% Add scale explanation
+\node[text width=3cm, text centered, font=\small\bfseries] (scale_title) at (11,4) {Scale (1-5):};
+\node[text width=3cm, text centered, font=\tiny] (scale1) at (11,3.5) {1 - Very Low};
+\node[text width=3cm, text centered, font=\tiny] (scale2) at (11,3.2) {2 - Low};
+\node[text width=3cm, text centered, font=\tiny] (scale3) at (11,2.9) {3 - Moderate};
+\node[text width=3cm, text centered, font=\tiny] (scale4) at (11,2.6) {4 - High};
+\node[text width=3cm, text centered, font=\tiny] (scale5) at (11,2.3) {5 - Very High};
+
+% Add key insights
+\node[text width=3cm, text centered, font=\small\bfseries] (insights_title) at (11,1.5) {Key Insights:};
+\node[text width=3cm, text centered, font=\tiny] (insight1) at (11,1) {• Practical skills\\exceeded theoretical\\knowledge};
+\node[text width=3cm, text centered, font=\tiny] (insight2) at (11,0.7) {• Largest learning\\gaps in technology\\and standards};
+\node[text width=3cm, text centered, font=\tiny] (insight3) at (11,0.4) {• Strong foundation\\in collaboration\\and problem solving};
+\node[text width=3cm, text centered, font=\tiny] (insight4) at (11,0.1) {• Internship provided\\significant practical\\experience};
+
+% Add learning impact summary
+\node[text width=4cm, text centered, font=\small\bfseries] (summary_title) at (-2,6) {Learning Impact Summary:};
+\node[text width=4cm, text centered, font=\tiny] (summary1) at (-2,5.5) {• Average theoretical\\knowledge: 2.5/5};
+\node[text width=4cm, text centered, font=\tiny] (summary2) at (-2,5.2) {• Average practical\\application: 3.8/5};
+\node[text width=4cm, text centered, font=\tiny] (summary3) at (-2,4.9) {• Average learning\\gap: +1.3 points};
+\node[text width=4cm, text centered, font=\tiny] (summary4) at (-2,4.6) {• Overall learning\\impact: High};
+
+\end{tikzpicture}
+
+\end{document}

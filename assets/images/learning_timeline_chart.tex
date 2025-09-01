@@ -1,0 +1,102 @@
+% Learning Timeline Chart
+% TikZ diagram for Chapter 3
+
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning,fit,backgrounds}
+
+\begin{document}
+
+\begin{tikzpicture}[
+    scale=1.2,
+    every node/.style={font=\small}
+]
+
+% Title
+\node[text width=12cm, text centered, font=\Large\bfseries] (title) at (0,8) {Learning Progression Timeline - Internship Journey};
+
+% Draw main timeline
+\draw[thick, blue!60] (0,4) -- (12,4);
+
+% Define timeline milestones
+\def\milestones{{
+    "Week 1:\\Orientation\\\& Basic\\Training",
+    "Week 2:\\Document\\Processing\\Introduction",
+    "Week 3:\\Financial\\Reporting\\Basics",
+    "Week 4:\\Budget\\Control\\Systems",
+    "Week 5:\\Advanced\\Excel\\Skills",
+    "Week 6:\\Process\\Optimization",
+    "Week 7:\\Independent\\Project\\Work",
+    "Week 8:\\Final\\Assessment\\\& Review"
+}}
+
+% Define milestone positions and types
+\def\milestonepositions{1.5,3,4.5,6,7.5,9,10.5,12}
+\def\milestonetypes{1,2,1,2,1,2,1,2} % 1=circle, 2=square
+
+% Draw milestone markers
+\foreach \i in {0,1,2,3,4,5,6,7} {
+    \pgfmathsetmacro{\x}{\milestonepositions[\i]}
+    \pgfmathsetmacro{\type}{\milestonetypes[\i]}
+    
+    \ifnum\type=1
+        \fill[green!70] (\x,4) circle (0.3);
+        \draw[thick] (\x,4) circle (0.3);
+    \else
+        \fill[orange!70] (\x,4) rectangle (\x+0.6,4.6);
+        \draw[thick] (\x,4) rectangle (\x+0.6,4.6);
+    \fi
+    
+    % Add milestone labels
+    \node[text width=1.5cm, text centered, font=\tiny] at (\x,5.5) {
+        \pgfmathparse{\milestones[\i]}
+        \pgfmathresult
+    };
+}
+
+% Add learning curve
+\draw[thick, red!60, smooth] plot coordinates {
+    (0,2) (1.5,2.2) (3,2.5) (4.5,2.8) (6,3.2) (7.5,3.5) (9,3.8) (10.5,4.1) (12,4.3)
+};
+
+% Add learning curve label
+\node[text width=2cm, text centered, font=\tiny] at (6,1.5) {Learning\\Progression\\Curve};
+
+% Add skill development areas
+\node[text width=3cm, text centered, font=\small\bfseries] (skills_title) at (13,6) {Skills Developed:};
+\node[text width=3cm, text centered, font=\tiny] (skill1) at (13,5.5) {• Financial Reporting};
+\node[text width=3cm, text centered, font=\tiny] (skill2) at (13,5.2) {• Document Management};
+\node[text width=3cm, text centered, font=\tiny] (skill3) at (13,4.9) {• Budget Control};
+\node[text width=3cm, text centered, font=\tiny] (skill4) at (13,4.6) {• Excel Proficiency};
+\node[text width=3cm, text centered, font=\tiny] (skill5) at (13,4.3) {• Communication};
+\node[text width=3cm, text centered, font=\tiny] (skill6) at (13,4) {• Problem Solving};
+\node[text width=3cm, text centered, font=\tiny] (skill7) at (13,3.7) {• Team Collaboration};
+
+% Add key achievements
+\node[text width=3cm, text centered, font=\small\bfseries] (achievements_title) at (13,3) {Key Achievements:};
+\node[text width=3cm, text centered, font=\tiny] (achievement1) at (13,2.5) {• Processed 200+\\documents};
+\node[text width=3cm, text centered, font=\tiny] (achievement2) at (13,2.2) {• Reduced processing\\time by 25\%};
+\node[text width=3cm, text centered, font=\tiny] (achievement3) at (13,1.9) {• Improved accuracy\\to 98\%};
+\node[text width=3cm, text centered, font=\tiny] (achievement4) at (13,1.6) {• Mentored new\\team members};
+
+% Add legend
+\node[text width=3cm, text centered, font=\small\bfseries] (legend_title) at (-2,6) {Legend:};
+\node[text width=3cm, text centered, font=\tiny] (legend1) at (-2,5.5) {Training Milestones\\\textcolor{green!70}{\rule{0.5cm}{0.1cm}}};
+\node[text width=3cm, text centered, font=\tiny] (legend2) at (-2,5) {Assessment Points\\\textcolor{orange!70}{\rule{0.5cm}{0.1cm}}};
+\node[text width=3cm, text centered, font=\tiny] (legend3) at (-2,4.5) {Learning Curve\\\textcolor{red!60}{\rule{0.5cm}{0.1cm}}};
+
+% Add phase indicators
+\node[text width=2cm, text centered, font=\tiny\bfseries] (phase1) at (2.25,6.5) {Phase 1:\\Foundation};
+\node[text width=2cm, text centered, font=\tiny\bfseries] (phase2) at (5.25,6.5) {Phase 2:\\Development};
+\node[text width=2cm, text centered, font=\tiny\bfseries] (phase3) at (8.25,6.5) {Phase 3:\\Application};
+\node[text width=2cm, text centered, font=\tiny\bfseries] (phase4) at (11.25,6.5) {Phase 4:\\Mastery};
+
+% Add phase descriptions
+\node[text width=2cm, text centered, font=\tiny] (phase1_desc) at (2.25,7) {Basic training\\and orientation};
+\node[text width=2cm, text centered, font=\tiny] (phase2_desc) at (5.25,7) {Skill building\\and practice};
+\node[text width=2cm, text centered, font=\tiny] (phase3_desc) at (8.25,7) {Independent\\work and\\optimization};
+\node[text width=2cm, text centered, font=\tiny] (phase4_desc) at (11.25,7) {Advanced tasks\\and mentoring};
+
+\end{tikzpicture}
+
+\end{document}
